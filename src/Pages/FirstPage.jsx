@@ -27,7 +27,7 @@ const FistPage = () => {
       {/* <Sponsor /> */}
       <Footer />
     </div>
-  )
+  );
 }
 
 export default FistPage

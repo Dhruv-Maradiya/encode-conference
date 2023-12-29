@@ -1,18 +1,31 @@
-import React, {useState, useEffect} from "react"
-import logo from "../assets/images/logo.png";
+import React, { useEffect, useState } from "react";
 import logo1 from "../assets/images/logo.jpg";
+import logo from "../assets/images/logo.png";
 // import logo2 from "../assets/images/logo2.png"
-import "../assets/css/navbar.css"
-import {Link} from "react-router-dom"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faChevronDown} from "@fortawesome/free-solid-svg-icons"
-import Theme from "./Theme"
-import Marquee from "react-fast-marquee"
-import Update from "./Update"
-import axios from "axios"
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import moment from "moment";
+import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
+import { IoIosPhonePortrait } from "react-icons/io";
+import { Link } from "react-router-dom";
+import "../assets/css/navbar.css";
+
+const formatDoubleDigits = (num) => {
+  if (num < 10) {
+    return `0${num}`;
+  }
+  return num;
+};
+
+const eventDate = moment("2024-02-16", "YYYY-MM-DD");
 
 // import { useRef,useEffect } from "react"
 export default function Navbar() {
+  const [remainingTime, setRemainingTime] = useState(
+    moment.duration(eventDate.diff(moment()))
+  );
+
   // const [fetchedData, setFetchedData] = useState([])
   // useEffect(() => {
   //   axios
@@ -49,37 +62,90 @@ export default function Navbar() {
 
   //  };
 
-  const hamburgerr = document.querySelector(".hamburger")
-  const navMenu = document.querySelector(".nav-main-menu")
-  const [switchToggled, setSwitchToggled] = useState(false)
+  const hamburgerr = document.querySelector(".hamburger");
+  const navMenu = document.querySelector(".nav-main-menu");
+  const [switchToggled, setSwitchToggled] = useState(false);
   const ToggleSwitch = () => {
-    switchToggled ? setSwitchToggled(false) : setSwitchToggled(true)
+    switchToggled ? setSwitchToggled(false) : setSwitchToggled(true);
     if (switchToggled === true) {
-      hamburgerr.classList.toggle("active")
-      navMenu.classList.toggle("active")
+      hamburgerr.classList.toggle("active");
+      navMenu.classList.toggle("active");
     } else {
-      hamburgerr.classList.toggle("active")
-      navMenu.classList.toggle("active")
+      hamburgerr.classList.toggle("active");
+      navMenu.classList.toggle("active");
     }
-  }
+  };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRemainingTime(moment.duration(eventDate.diff(moment())));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="header">
-          <div>
-      <div className="header-1">
-        <p className='text'> 
+      <div className="overlay">
+        <div className="overlay-item">
+          <div className="header-contact">
+            <HiOutlineMail />
+            <p>encode@gmail.com</p>
+          </div>
+          <div className="header-contact">
+            <IoIosPhonePortrait />
+            <p>+91 123456789</p>
+          </div>
+        </div>
+        <div className="overlay-item">
+          <div className="overlay-btn blink">List of Hotels</div>
+          <div className="overlay-btn blink">First Information Brochure</div>
+          <div className="overlay-btn blink">Second Information Brochure</div>
+          <div className="overlay-btn blink">Import dates</div>
+        </div>
+        <div className="overlay-item">
+          {/* Social links */}
+          <a href="https://www.facebook.com/ICOGES">
+            <FaFacebookF fontSize="1.5rem" />
+          </a>
+          <a href="https://twitter.com/ICOGES">
+            <FaTwitter fontSize="1.5rem" />
+          </a>
+          <a href="https://www.linkedin.com/company/icoges">
+            <FaLinkedinIn fontSize="1.5rem" />
+          </a>
+        </div>
+      </div>
+      <div>
+        <div className="header-1">
+          <p className="text">
             <span>ICOGES 2024 | </span>
             <span>February 16 - 17</span>
-        </p>
+          </p>
+          <div className="timer">
+            <div>
+              <p>{formatDoubleDigits(remainingTime.days())}</p>
+              <p>Days</p>
+            </div>
+            <div>
+              <p>{formatDoubleDigits(remainingTime.hours())}</p>
+              <p>Hours</p>
+            </div>
+            <div>
+              <p>{formatDoubleDigits(remainingTime.minutes())}</p>
+              <p>Minutes</p>
+            </div>
+            <div>
+              <p>{formatDoubleDigits(remainingTime.seconds())}</p>
+              <p>Seconds</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  
       <nav className="navbar">
         <div className="logo">
           <div className="logo-container">
-            <img className="icghd-logo" src={logo1} alt="Logo2" />
-            <img className="pdeu-logo" src={logo} alt="Logo" />
+            <img className="icghd-logo header-logo" src={logo1} alt="Logo2" />
+            <img className="pdeu-logo header-logo" src={logo} alt="Logo" />
           </div>
         </div>
         <div className="links">
@@ -155,7 +221,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-            <Link to="/sponsorship" className="nav-link">
+              <Link to="/sponsorship" className="nav-link">
                 SPONSORSHIP
               </Link>
             </li>
@@ -173,12 +239,11 @@ export default function Navbar() {
           <span className="bar"></span>
         </div>
       </nav>
-
       {/* <Marquee gradient={false} style={{color: "white"}}>
         {fetchedData.map((data) => (
           <Update key={data._id} update={data.update} />
         ))}
       </Marquee> */}
     </div>
-  )
+  );
 }

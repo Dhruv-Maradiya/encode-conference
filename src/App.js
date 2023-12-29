@@ -1,18 +1,19 @@
-import FirstPage from "./Pages/FirstPage"
-import ContactPage from "./Pages/ContactPage"
-import RegistrationFeePage from "./Pages/RegistrationFeePage"
+import React from "react";
+import FirstPage from "./Pages/FirstPage";
+import ContactPage from "./Pages/ContactPage";
+import RegistrationFeePage from "./Pages/RegistrationFeePage";
 // import {Routes, Route, HashRouter, BrowserRouter} from "react-router-dom"
-import {Routes, Route, BrowserRouter} from "react-router-dom"
-import CommingSoon from "./Components/CommingSoon"
-import Committee from "./Components/Committee"
-import Theme from "./Components/Theme"
-import Keynote from "./Components/Keynotespeakers"
-import CallForPaper from "./Components/CallForPaper"
-import Awards from "./Components/Awards"
-import UpdatePost from "./Pages/UpdatePost"
-import EditPost from "./Pages/EditPost"
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import CommingSoon from "./Components/CommingSoon";
+import Committee from "./Components/Committee";
+import Theme from "./Components/Theme";
+import Keynote from "./Components/Keynotespeakers";
+import CallForPaper from "./Components/CallForPaper";
+import Awards from "./Components/Awards";
+import UpdatePost from "./Pages/UpdatePost";
+import EditPost from "./Pages/EditPost";
 // import Itenary from "./Components/Itenary"
-import Sponsorship from "./Components/Sponsorship"
+import Sponsorship from "./Components/Sponsorship";
 function App() {
   return (
     // <HashRouter>
@@ -44,7 +45,7 @@ function App() {
       <Route exact path="/sponsorship" element={<Sponsorship />} />
     </Routes>
     // </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

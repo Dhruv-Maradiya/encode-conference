@@ -30,10 +30,6 @@
   /* flex-direction: column; */
   /* grid-column: 4; */
 }
-.text{
-  font-size:26px;
-  margin:30px;
-}
 .empty-cards {
   display: none;
   min-height: 175px;

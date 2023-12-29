@@ -3,6 +3,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faB} from "@fortawesome/free-solid-svg-icons"
 import {faWhatsapp} from "@fortawesome/free-brands-svg-icons"
 import ReactWhatsapp from "react-whatsapp"
+import React from "react";
+
 
 const Contact = () => {
   return (
